@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import { useParams } from "react-router-dom";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -39,6 +40,8 @@ const boxVariants = {
 };
 
 function Gesture() {
+  const params = useParams();
+  console.log(params);
   const biggerBoxRef = useRef<HTMLDivElement>(null);
   return (
     <Wrapper>
