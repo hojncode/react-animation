@@ -5,6 +5,8 @@ import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { darkTheme } from "./theme";
 import { createGlobalStyle } from "styled-components";
+import { Route } from "react-router-dom";
+import Router from "./Router";
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 html, body, div, span, applet, object, iframe,
