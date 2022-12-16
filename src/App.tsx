@@ -1,63 +1,88 @@
-import styled from "styled-components";
-import {
-  motion,
-  useMotionValue,
-  useTransform,
-  useViewportScroll,
-} from "framer-motion";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import Router from "./Router";
-import { useEffect } from "react";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
+import { darkTheme } from "./theme";
 
-const Wrapper = styled(motion.div)`
-  height: 200vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, menu, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+main, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, main, menu, nav, section {
+  display: block;
+}
+/* HTML5 hidden-attribute fix for newer browsers */
+*[hidden] {
+    display: none;
+}
+body {
+  line-height: 1;
+}
+menu, ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+}
+a {
+  text-decoration:none;
+  color: inherit;
+}
 `;
 
-const Box = styled(motion.div)`
-  width: 200px;
-  height: 200px;
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: 40px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
-`;
+const queryClient = new QueryClient();
 
 function App() {
-  const x = useMotionValue(0);
-  const rotateZ = useTransform(x, [-800, 800], [-360, 360]); // useEffect(() => {
-  //   rotateZ.onChange(() => console.log(rotateZ.get()));
-  // }, [rotateZ]);
-  // //! 박스 움직임 좌표 콘솔찍기
-  // useEffect(() => {
-  //   x.onChange(() => console.log(x.get()));
-  // }, [x]);
-  const gradient = useTransform(
-    x,
-    [-800, 0, 800],
-    [
-      "linear-gradient(135deg, rgb(19, 214, 235), rgb(0, 38, 255))",
-      "linear-gradient(135deg, rgb(235, 19, 152), rgb(221, 0, 238))",
-      "linear-gradient(135deg, rgb(0, 255, 145), rgb(236, 172, 54))",
-    ]
-  );
-  // const { scrollY, scrollYProgress } = useViewportScroll();
-  // useEffect(() => {
-  //   scrollY.onChange(() => {
-  //     console.log(scrollY.get(), scrollYProgress.get());
-  //   });
-  // }, [scrollY, scrollYProgress]);
-  const { scrollYProgress } = useViewportScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 5]);
   return (
-    <div>
-      {/* <Router /> */}
-      <Wrapper style={{ background: gradient }}>
-        {/* <button onClick={() => x.set(200)}>click me</button> */}
-        <Box style={{ x, rotateZ, scale }} drag="x" dragSnapToOrigin />
-      </Wrapper>
-    </div>
+    <>
+      <QueryClientProvider client={queryClient}>
+        {/* The rest of your application */}
+        <ThemeProvider theme={darkTheme}>
+          <GlobalStyle />
+          <Router />
+          <ReactQueryDevtools initialIsOpen={true} />
+        </ThemeProvider>
+      </QueryClientProvider>
+    </>
   );
 }
 
