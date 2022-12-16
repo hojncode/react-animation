@@ -6,11 +6,15 @@ import Variants from "./routes/Variants";
 import Home from "./routes/Home";
 import SVG from "./routes/SVG";
 import AP from "./routes/AP";
+import Slider from "./routes/Slider";
 
 function Router() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/Slider">
+          <Slider />
+        </Route>
         <Route path="/AP">
           <AP />
         </Route>
