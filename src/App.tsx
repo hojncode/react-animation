@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { motion, useMotionValue } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import Router from "./Router";
 import { useEffect } from "react";
 
@@ -21,7 +21,10 @@ const Box = styled(motion.div)`
 
 function App() {
   const x = useMotionValue(0);
-
+  const scale = useTransform(x, [-800, 0, 800], [2, 1, 0.1]);
+  useEffect(() => {
+    scale.onChange(() => console.log(scale.get()));
+  }, [scale]);
   // //! 박스 움직임 좌표 콘솔찍기
   // useEffect(() => {
   //   x.onChange(() => console.log(x.get()));
@@ -31,8 +34,8 @@ function App() {
     <div>
       {/* <Router /> */}
       <Wrapper>
-        <button onClick={() => x.set(200)}>click me</button>
-        <Box style={{ x }} drag="x" />
+        {/* <button onClick={() => x.set(200)}>click me</button> */}
+        <Box style={{ x, scale }} drag="x" dragSnapToOrigin />
       </Wrapper>
     </div>
   );
