@@ -8,11 +8,15 @@ import SVG from "./routes/SVG";
 import AP from "./routes/AP";
 import Slider from "./routes/Slider";
 import LayoutId from "./routes/LayoutId";
+import Result from "./routes/Result";
 
 function Router() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/result">
+          <Result />
+        </Route>
         <Route path="/LayoutId">
           <LayoutId />
         </Route>
