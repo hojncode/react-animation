@@ -5,11 +5,15 @@ import MotionValues from "./routes/MotionValues";
 import Variants from "./routes/Variants";
 import Home from "./routes/Home";
 import SVG from "./routes/SVG";
+import AP from "./routes/AP";
 
 function Router() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/AP">
+          <AP />
+        </Route>
         <Route path="/SVG">
           <SVG />
         </Route>
