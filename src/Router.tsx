@@ -7,11 +7,15 @@ import Home from "./routes/Home";
 import SVG from "./routes/SVG";
 import AP from "./routes/AP";
 import Slider from "./routes/Slider";
+import LayoutId from "./routes/LayoutId";
 
 function Router() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/LayoutId">
+          <LayoutId />
+        </Route>
         <Route path="/Slider">
           <Slider />
         </Route>

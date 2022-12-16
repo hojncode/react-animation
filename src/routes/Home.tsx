@@ -7,6 +7,7 @@ const Wrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(235, 19, 152);
 `;
 
 const Box = styled(motion.div)`
@@ -17,7 +18,7 @@ const Box = styled(motion.div)`
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
 
-function AnimatePresence() {
+function Home() {
   return (
     <Wrapper>
       <button></button>
@@ -26,4 +27,4 @@ function AnimatePresence() {
   );
 }
 
-export default AnimatePresence;
+export default Home;
