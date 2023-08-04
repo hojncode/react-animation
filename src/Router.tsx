@@ -15,33 +15,17 @@ function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/resultb">
-          <ResultB />
-        </Route>
-        <Route path="/result">
-          <Result />
-        </Route>
-        <Route path="/LayoutId">
-          <LayoutId />
-        </Route>
-        <Route path="/Slider">
-          <Slider />
-        </Route>
-        <Route path="/AP">
-          <AP />
-        </Route>
-        <Route path="/SVG">
-          <SVG />
-        </Route>
-        <Route path="/Gesture">
-          <Gesture />
-        </Route>
-        <Route path="/Variants">
-          <Variants />
-        </Route>
-        <Route path="/MotionValues">
-          <MotionValues />
-        </Route>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/util/resultb" component={ResultB} />
+        <Route exact path="/resultb" component={ResultB} />
+        <Route exact path="/result" component={Result} />
+        <Route exact path="/LayoutId" component={LayoutId} />
+        <Route exact path="/Slider" component={Slider} />
+        <Route exact path="/AP" component={AP} />
+        <Route exact path="/SVG" component={SVG} />
+        <Route exact path="/Gesture" component={Gesture} />
+        <Route exact path="/Variants" component={Variants} />
+        <Route exact path="/MotionValues" component={MotionValues} />
       </Switch>
     </BrowserRouter>
   );
